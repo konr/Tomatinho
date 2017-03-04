@@ -48,6 +48,7 @@ Example using =notify-send=:
 
 #+BEGIN_SRC lisp
 (defun my-tomatinho-update-hook ()
+  (play-sound-file-async tomatinho-sound-tick) ;; play tick sound every second
   (when (equal (car tomatinho-current) 'pause)
     (start-process "notify-send"
                    nil

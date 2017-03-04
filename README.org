@@ -47,9 +47,11 @@ You can set =tomatinho-update-hook= to show desired notification.
 Example using =notify-send=:
 
 #+BEGIN_SRC lisp
+
 (defun my-tomatinho-update-hook ()
   (play-sound-file-async tomatinho-sound-tick) ;; play tick sound every second
-  (when (equal (car tomatinho-current) 'pause)
+  (when (and (equal (car tomatinho-current) 'pause)
+             (= (timestamp) tomatinho-last))
     (start-process "notify-send"
                    nil
                    "notify-send"

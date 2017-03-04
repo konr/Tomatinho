@@ -41,6 +41,27 @@ settings to your liking.
 
 Some more customs might be added in the future.
 
+* Notification
+You can set =tomatinho-update-hook= to show desired notification.
+
+Example using =notify-send=:
+
+#+BEGIN_SRC lisp
+(defun my-tomatinho-update-hook ()
+  (when (equal (car tomatinho-current) 'pause)
+    (start-process "notify-send"
+                   nil
+                   "notify-send"
+                   (format "tomatinho: make a pause (%s+%s)"
+                           tomatinho-pomodoro-length
+                           (cdr tomatinho-current))
+                   "-t" "3000"
+                   "-i" "/usr/share/icons/hicolor/16x16/apps/emacs.png")))
+
+(add-hook 'tomatinho-update-hook #'my-tomatinho-update-hook)
+#+END_SRC
+
+
 * Seeing is believing
 
   Check out these screenshots!

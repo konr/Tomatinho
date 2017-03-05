@@ -69,6 +69,8 @@
 (defvar tomatinho-sound-tack (expand-file-name (concat tomatinho-dir "tack.wav"))
   "Tack sound during a break.")
 
+(defvar tomatinho-update-hook nil)
+
 
 ;;; Faces
 ;; §later: classes for dark/light!
@@ -291,7 +293,8 @@
        (insert "\n")
        (if tomatinho-display-tubes
 	   (tomatinho-display-tubes)
-	 (tomatinho-display-history))))))
+	 (tomatinho-display-history)))))
+  (run-hooks 'tomatinho-update-hook))
 
 ;;;;;;;;;;;;;;;;;;;
 ;; Main function ;;
